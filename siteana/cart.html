@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AGGE’S CAKE - Seu Pedido</title>
+    <link rel="stylesheet" href="home.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet"/>
+    <script src="https://kit.fontawesome.com/eedbcd0c96.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+        .container {
+            margin: 50px auto;
+            width: 90%;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        #detalhes-pedido {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #555;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #d32f2f;
+        }
+
+
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #d3b5e5;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 10px 0 0;
+    }
+
+    .footer-links li {
+        display: inline;
+        margin-right: 10px;
+    }
+
+    .footer-links a {
+        color: white;
+        text-decoration: none;
+    }
+    </style>
+</head>
+<body>
+    <section id="header">
+        <div class="logo">
+            <h2>AGGE’S CAKE</h2>
+        </div>
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="shop.html">Tipos</a></li>
+                <li><a href="index.html #product2">Equipe</a></li>
+                <li><a href="cart.html">Pedidos</a></li>
+                <div class="js-shop-quantity pro-quantity"></div>
+                <li>
+                    <i id="shopbag" class="fa-sharp fa-solid fa-cart-shopping js-cart-click"></i>
+                </li>
+                <a href="#" id="close" onclick="remove()">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+            </ul>
+        </div>
+        <div id="mobile">
+            <div class="js-shop-quantity pro-quantity"></div>
+            <i class="fa-sharp fa-solid fa-cart-shopping js-cart-click"></i>
+            <i id="bar" class="fas fa-outdent" onclick="show()"></i>
+        </div>
+    </section>
+
+    <div class="container">
+        <h1>Pedidos</h1>
+        <div id="detalhes-pedido"></div>
+        <button id="limpar-carrinho">Limpar Carrinho</button>
+        <button id="voltar" style="display: none;  background-color: #4CAF50; /* Cor de fundo verde */
+    color: white; /* Cor do texto branca */">Voltar</button> <!-- Botão Voltar -->
+    </div>
+    
+    <script>
+        // Recupera os detalhes do pedido do localStorage
+        const pedido = JSON.parse(localStorage.getItem('pedido'));
+        const detalhesPedidoDiv = document.getElementById('detalhes-pedido');
+        const voltarButton = document.getElementById('voltar');
+    
+        if (pedido) {
+            detalhesPedidoDiv.innerHTML = `
+                <p><strong>Forma:</strong> ${pedido.forma}</p>
+                <p><strong>Ingredientes:</strong> ${pedido.ingredientes}</p>
+                <p><strong>Cobertura:</strong> ${pedido.cobertura}</p>
+                <p><strong>Decoração:</strong> ${pedido.decoracao}</p>
+                <p><strong>Preço Total:</strong> <span id="preco-total">R$ ${calcularPreco(pedido)},00</span></p>
+            `;
+        } else {
+            detalhesPedidoDiv.innerHTML = '<p>Nenhum pedido encontrado.</p>';
+        }
+    
+        // Função para calcular o preço total
+        function calcularPreco(pedido) {
+            let precoTotal = 0;
+            if (pedido.ingredientes === 'chocolate') precoTotal += 50;
+            if (pedido.ingredientes === 'baunilha') precoTotal += 60;
+            if (pedido.ingredientes === 'morango') precoTotal += 70;
+            if (pedido.cobertura === 'chantilly') precoTotal += 10;
+            if (pedido.cobertura === 'ganache') precoTotal += 15;
+            if (pedido.cobertura === 'frutas') precoTotal += 20;
+            if (pedido.decoracao === 'flores') precoTotal += 5;
+            if (pedido.decoracao === 'frutas-frescas') precoTotal += 10;
+            if (pedido.decoracao === 'granulado') precoTotal += 5;
+    
+            return precoTotal;
+        }
+    
+        // Evento para limpar o carrinho
+        document.getElementById('limpar-carrinho').addEventListener('click', function () {
+            localStorage.removeItem('pedido'); // Remove o pedido do localStorage
+            detalhesPedidoDiv.innerHTML = '<p>Nenhum pedido encontrado.</p>'; // Atualiza a visualização
+            voltarButton.style.display = 'block'; // Exibe o botão Voltar
+        });
+    
+        // Evento para redirecionar para a página inicial
+        voltarButton.addEventListener('click', function () {
+            window.location.href = 'index.html'; // Redireciona para o index.html
+        });
+    </script>
+
+<footer>
+    <div class="footer-container">
+      <div class="footer-content">
+        <p>&copy; 2024 AGGE’S CAKE. Desenvolvido por Integrantes X.</p>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Tipos</a></li>
+          <li><a href="index.html #product2">Equipe</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AGGE’S CAKE</title>
+    <link rel="stylesheet" href="home.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet"/>
+    <script src="https://kit.fontawesome.com/eedbcd0c96.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        .container {
+            margin: 50px auto; /* Adiciona margem em cima e em baixo */
+            width: 90%;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        select, input {
+            margin-top: 5px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #preco-total {
+            color: #e91e63;
+            font-size: 18px;
+        }
+
+        /* Estilo do rodapé */
+        footer {
+            margin-top: 20px;
+            background-color: #e56997;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .footer-links {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <section id="header">
+        <div class="logo">
+            <h2>AGGE’S CAKE</h2>
+        </div>
+        <div>
+            <ul id="navbar">
+                <li>
+                    <a href="index.html" class="active">Home</a>
+                </li>
+                <li>
+                    <a href="shop.html">Shop</a>
+                </li>
+                <li>
+                    <a href="index.html #product2">Equipe</a>
+                </li>
+                <li>
+                    <a href="cart.html">Pedidos</a>
+                </li>
+                <div class="js-shop-quantity pro-quantity"></div>
+                <li>
+                    <i id="shopbag" class="fa-sharp fa-solid fa-cart-shopping js-cart-click"></i>
+                </li>
+                <a href="#" id="close" onclick="remove()">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+            </ul>
+        </div>
+        <div id="mobile">
+            <div class="js-shop-quantity pro-quantity"></div>
+            <i class="fa-sharp fa-solid fa-cart-shopping js-cart-click"></i>
+            <i id="bar" class="fas fa-outdent" onclick="show()"></i>
+        </div>
+    </section>
+
+    <div class="container">
+        <h1>Monte seu Bolo!</h1>
+        <form id="personalizar-bolo">
+            <label for="forma">Escolha a Forma:</label>
+            <select id="forma" name="forma">
+                <option value="">Selecione...</option> <!-- Valor vazio -->
+                <option value="redonda">Redonda</option>
+                <option value="quadrada">Quadrada</option>
+                <option value="coração">Coração</option>
+            </select>
+
+            <label for="ingredientes">Ingredientes:</label>
+            <select id="ingredientes" name="ingredientes">
+                <option value="">Selecione...</option> <!-- Valor vazio -->
+                <option value="chocolate">Chocolate (R$ 50,00)</option>
+                <option value="baunilha">Baunilha (R$ 60,00)</option>
+                <option value="morango">Morango (R$ 70,00)</option>
+            </select>
+
+            <label for="cobertura">Cobertura:</label>
+            <select id="cobertura" name="cobertura">
+                <option value="">Selecione...</option> <!-- Valor vazio -->
+                <option value="chantilly">Chantilly (R$ 10,00)</option>
+                <option value="ganache">Ganache (R$ 15,00)</option>
+                <option value="frutas">Frutas (R$ 20,00)</option>
+            </select>
+
+            <label for="decoracao">Decoração:</label>
+            <select id="decoracao" name="decoracao">
+                <option value="">Selecione...</option> <!-- Valor vazio -->
+                <option value="flores">Flores de Açúcar (R$ 5,00)</option>
+                <option value="frutas-frescas">Frutas Frescas (R$ 10,00)</option>
+                <option value="granulado">Granulado (R$ 5,00)</option>
+            </select>
+
+            <p><strong>Preço Total:</strong> <span id="preco-total">R$ 0,00</span></p> <!-- Preço inicial -->
+            <button type="submit">Finalizar Pedido</button>
+        </form>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <p>&copy; 2024 AGGE’S CAKE. Desenvolvido por Integrantes X.</p>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Tipos</a></li>
+                    <li><a href="index.html #product2">Equipe</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/products.js"></script>
+    <script src="home.js"></script>
+    <script src="teste.js"></script>
+    <script>
+        document.getElementById('personalizar-bolo').addEventListener('change', function () {
+            // Preços base
+            let precoBase = 0; // Inicialmente 0
+            let precoTotal = precoBase;
+    
+            // Captura os valores selecionados
+            const forma = document.getElementById('forma').value;
+            const ingredientes = document.getElementById('ingredientes').value;
+            const cobertura = document.getElementById('cobertura').value;
+            const decoracao = document.getElementById('decoracao').value;
+    
+            // Adiciona preços de acordo com a seleção
+            if (ingredientes === 'chocolate') precoTotal += 50;
+            if (ingredientes === 'baunilha') precoTotal += 60;
+            if (ingredientes === 'morango') precoTotal += 70;
+    
+            if (cobertura === 'chantilly') precoTotal += 10;
+            if (cobertura === 'ganache') precoTotal += 15;
+            if (cobertura === 'frutas') precoTotal += 20;
+    
+            if (decoracao === 'flores') precoTotal += 5;
+            if (decoracao === 'frutas-frescas') precoTotal += 10;
+            if (decoracao === 'granulado') precoTotal += 5;
+    
+            // Atualiza o preço na tela
+            document.getElementById('preco-total').innerText = `R$ ${precoTotal},00`;
+        });
+    
+        document.getElementById('personalizar-bolo').addEventListener('submit', function (event) {
+            event.preventDefault(); // Impede o envio do formulário
+    
+            // Captura os valores selecionados
+            const forma = document.getElementById('forma').value;
+            const ingredientes = document.getElementById('ingredientes').value;
+            const cobertura = document.getElementById('cobertura').value;
+            const decoracao = document.getElementById('decoracao').value;
+    
+            // Cria um objeto com os detalhes do pedido
+            const pedido = {
+                forma,
+                ingredientes,
+                cobertura,
+                decoracao
+            };
+    
+            // Armazena o pedido no localStorage
+            localStorage.setItem('pedido', JSON.stringify(pedido));
+    
+            // Redireciona para a página do carrinho
+            window.location.href = 'cart.html';
+        });
+    </script>
+</body>
+</html>
